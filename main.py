@@ -37,16 +37,16 @@ def draw_window(red, yellow):
 
 
 def yellow_ship_handle_movement(keys_pressed, yellow):
-    if keys_pressed[pygame.K_a]: # left
+    if keys_pressed[pygame.K_a] and yellow.x - VEL > 0: # left
         yellow.x -= VEL
 
-    if keys_pressed[pygame.K_d]: # right
+    if keys_pressed[pygame.K_d] and yellow.x + VEL + yellow.width < BORDER.x: # right
         yellow.x += VEL
 
-    if keys_pressed[pygame.K_w]: # UP
+    if keys_pressed[pygame.K_w] and yellow.y - VEL > 0: # UP
         yellow.y -= VEL
 
-    if keys_pressed[pygame.K_s]: # Down
+    if keys_pressed[pygame.K_s]and yellow.y + VEL + yellow.height < HEIGHT - 15: # Down
         yellow.y += VEL
 
 
