@@ -1,4 +1,5 @@
 import pygame
+import os
 
 # Creating Global Variables
 
@@ -9,10 +10,25 @@ pygame.display.set_caption("Space war ships")
 WHITE = (255, 255, 255)
 
 FPS = 60
+SPACESHIP_WIDTH, SPACESHIP_HEIGHT = 55, 44
 
+
+
+#import the images for the spaceship and resize
+YELLOW_SPACESHIP_IMAGE = pygame.image.load(
+    os.path.join('Assets', 'spaceship_yellow.png'))
+
+YELLOW_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(YELLOW_SPACESHIP_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 90)
+                                          
+RED_SPACESHIP_IMAGE = pygame.image.load(
+    os.path.join('Assets', 'spaceship_red.png'))
+
+RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 270)
 
 def draw_window():
     WIN.fill(WHITE)
+    WIN.blit(YELLOW_SPACESHIP, (300, 100))
+    WIN.blit(RED_SPACESHIP, (700, 100))
     pygame.display.update()
 
 
