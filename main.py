@@ -52,16 +52,16 @@ def yellow_ship_handle_movement(keys_pressed, yellow):
 
 
 def red_ship_handle_movement(keys_pressed, red):
-    if keys_pressed[pygame.K_LEFT]: # left
+    if keys_pressed[pygame.K_LEFT] and red.x - VEL > BORDER.x + BORDER.width: # left
         red.x -= VEL
 
-    if keys_pressed[pygame.K_RIGHT]: # right
+    if keys_pressed[pygame.K_RIGHT] and red.x + VEL + red.width < WIDTH: # right
         red.x += VEL
 
-    if keys_pressed[pygame.K_UP]: # UP
+    if keys_pressed[pygame.K_UP] and red.y - VEL > 0: # UP
         red.y -= VEL
 
-    if keys_pressed[pygame.K_DOWN]: # Down
+    if keys_pressed[pygame.K_DOWN] and red.y + VEL + red.height < HEIGHT - 15: # Down
         red.y += VEL
 
 
