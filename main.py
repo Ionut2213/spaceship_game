@@ -123,6 +123,8 @@ def main():
     yellow = pygame.Rect(100, 300, SPACESHIP_WIDTH, SPACESHIP_HEIGHT)
     red_bullets = []
     yellow_bullets = []
+    red_health = 10
+    yellow_health = 10
     clock = pygame.time.Clock()
     run = True
     while run:
@@ -140,6 +142,27 @@ def main():
                 if event.key == pygame.K_RCTRL and len(red_bullets) < NUM_BULLETS:
                     bullet = pygame.Rect(red.x, red.y + red.height // 2 - 2, 10, 5)
                     red_bullets.append(bullet)
+            
+
+            # checking the events for hits
+            if event.type == RED_HIT:
+                red_health -= 1
+
+            
+
+            if event.type == YELLOW_HIT:
+                yellow_health -= 1
+        
+        # we check who s the winner
+        winner_text = ""
+        if red_health <= 0:
+            winner_text = "Yellow Wins!"
+
+        if yellow_health <= 0:
+            winner_text = "Red Wins!"
+
+        if winner_text != "":
+            pass
 
 
         keys_pressed = pygame.key.get_pressed()
@@ -147,7 +170,7 @@ def main():
         red_ship_handle_movement(keys_pressed, red)
 
         handle_bullets(yellow_bullets, red_bullets, yellow, red)
-        draw_window(red, yellow, red_bullets, yellow_bullets)
+        draw_window(red, yellow, red_bullets, yellow_bullets, red_health, yellow_health)
         
         
     pygame.quit()
