@@ -49,7 +49,7 @@ RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(RED_SPACESHIP_IMA
 
 
 # import the image for the background image
-SPACE = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'space.png')), (WIDTH, HEIGHT))
+SPACE = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'space2.jpeg')), (WIDTH, HEIGHT))
 
 def draw_window(red, yellow, red_bullets, yellow_bullets, red_health, yellow_health):
     WIN.blit(SPACE, (0, 0))
