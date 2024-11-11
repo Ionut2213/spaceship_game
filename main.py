@@ -1,6 +1,7 @@
 import pygame
 import os
 pygame.font.init() # init they pygame font library
+pygame.mixer.init() # init the pygame sound effects
 
 # Creating Global Variables
 
@@ -13,6 +14,10 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
 BORDER = pygame.Rect(WIDTH//2 - 5, 0, 10, HEIGHT)
+
+# import the sound part
+BULLET_HIT_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'Grenade+1.mp3'))
+BULLET_FIRE_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'Gun+Silencer.mp3'))
 
 
 HEALTH_FONT = pygame.font.SysFont('comicsans', 40)
@@ -161,21 +166,29 @@ def main():
                 if event.key == pygame.K_LCTRL and len(yellow_bullets) < NUM_BULLETS:
                     bullet = pygame.Rect(yellow.x + yellow.width, yellow.y + yellow.height // 2 - 2, 10, 5)
                     yellow_bullets.append(bullet)
+                    # implementing the sound efect when we shot the bullet
+                    BULLET_FIRE_SOUND.play()
 
 
                 if event.key == pygame.K_RCTRL and len(red_bullets) < NUM_BULLETS:
                     bullet = pygame.Rect(red.x, red.y + red.height // 2 - 2, 10, 5)
                     red_bullets.append(bullet)
+                    # implementing the sound efect when we shot the bullet
+                    BULLET_FIRE_SOUND.play()
             
 
             # checking the events for hits
             if event.type == RED_HIT:
                 red_health -= 1
+                # implementing the sound effect when the ship is hit
+                BULLET_HIT_SOUND.play()
 
             
 
             if event.type == YELLOW_HIT:
                 yellow_health -= 1
+                 # implementing the sound effect when the ship is hit
+                BULLET_HIT_SOUND.play()
         
         # we check who s the winner
         winner_text = ""
