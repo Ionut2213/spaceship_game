@@ -1,5 +1,6 @@
 import pygame
 import os
+pygame.font.init() # init they pygame font library
 
 # Creating Global Variables
 
@@ -12,6 +13,9 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
 BORDER = pygame.Rect(WIDTH//2 - 5, 0, 10, HEIGHT)
+
+
+HEALTH_FONT = pygame.font.SysFont('comicsans', 40)
 
 FPS = 60
 VEL = 5
@@ -41,11 +45,22 @@ RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(RED_SPACESHIP_IMA
 # import the image for the background image
 SPACE = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'space.png')), (WIDTH, HEIGHT))
 
-def draw_window(red, yellow, red_bullets, yellow_bullets):
+def draw_window(red, yellow, red_bullets, yellow_bullets, red_health, yellow_health):
     WIN.blit(SPACE, (0, 0))
     pygame.draw.rect(WIN, BLACK, BORDER)
+
+    #Draw health
+
+    red_health_text = HEALTH_FONT.render("Health " + str(red_health), 1, WHITE)
+    yellow_health_text = HEALTH_FONT.render("Health " + str(yellow_health), 1, WHITE)
+    WIN.blit(red_health_text, (WIDTH - red_health_text.get_width() - 10, 10))
+    WIN.blit(yellow_health_text, (10, 10))
+
+
+
     WIN.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
     WIN.blit(RED_SPACESHIP, (red.x, red.y))
+
 
     # Draw red bullets
     for bullet in red_bullets:
